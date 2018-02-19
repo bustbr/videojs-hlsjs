@@ -5,9 +5,8 @@
   * Initialize the plugin.
   * @param options (optional) {object} configuration for the plugin
   */
-  var Component = videojs.getComponent('Component'),
-      Tech = videojs.getTech('Tech'),
-      Html5 = videojs.getComponent('Html5');
+  var Tech = videojs.getTech('Tech'),
+      Html5 = videojs.getTech('Html5');
 
   var Hlsjs = videojs.extend(Html5, {
     initHls_: function() {
@@ -149,7 +148,7 @@
         } else if (this.options_.startLevelByHeight) {
           startLevel = this.getLevelByHeight_(this.options_.startLevelByHeight);
           autoLevel = hasAutoLevel;
-        } 
+        }
 
         if (!hasAutoLevel && (!startLevel || startLevel.index === -1)) {
           startLevel = this.levels_[this.levels_.length-1];
@@ -487,8 +486,6 @@
     hls: {}
   };
 
-  Component.registerComponent('Hlsjs', Hlsjs);
   Tech.registerTech('hlsjs', Hlsjs);
-  videojs.options.techOrder.push('hlsjs');
 
 })(window, window.videojs, window.Hls);
