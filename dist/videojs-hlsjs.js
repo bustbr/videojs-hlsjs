@@ -1,14 +1,17 @@
-/*! videojs-hlsjs - v1.4.8 - 2017-07-14*/
-(function (window, videojs, Hls) {
+/*! videojs-hlsjs - v2.0.0 - 2018-02-23*/
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(require(['video.js', 'hls.js'])) :
+  typeof define === 'function' && define.amd ? define(['video.js', 'hls.js'], factory) :
+  (factory(global.videojs, global.Hls));
+}(this, (function (videojs, Hls) {
   'use strict';
 
   /**
   * Initialize the plugin.
   * @param options (optional) {object} configuration for the plugin
   */
-  var Component = videojs.getComponent('Component'),
-      Tech = videojs.getTech('Tech'),
-      Html5 = videojs.getComponent('Html5');
+  var Tech = videojs.getTech('Tech'),
+      Html5 = videojs.getTech('Html5');
 
   var Hlsjs = videojs.extend(Html5, {
     initHls_: function() {
@@ -150,7 +153,7 @@
         } else if (this.options_.startLevelByHeight) {
           startLevel = this.getLevelByHeight_(this.options_.startLevelByHeight);
           autoLevel = hasAutoLevel;
-        } 
+        }
 
         if (!hasAutoLevel && (!startLevel || startLevel.index === -1)) {
           startLevel = this.levels_[this.levels_.length-1];
@@ -488,8 +491,6 @@
     hls: {}
   };
 
-  Component.registerComponent('Hlsjs', Hlsjs);
   Tech.registerTech('hlsjs', Hlsjs);
-  videojs.options.techOrder.push('hlsjs');
 
-})(window, window.videojs, window.Hls);
+})));
