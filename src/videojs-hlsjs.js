@@ -1,4 +1,8 @@
-(function (window, videojs, Hls) {
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(require(['video.js', 'hls.js'])) :
+  typeof define === 'function' && define.amd ? define(['video.js', 'hls.js'], factory) :
+  (factory(global.videojs, global.Hls));
+}(this, (function (videojs, Hls) {
   'use strict';
 
   /**
@@ -491,4 +495,4 @@
   Tech.registerTech('hlsjs', Hlsjs);
   videojs.options.techOrder.push('hlsjs');
 
-})(window, window.videojs, window.Hls);
+})));
